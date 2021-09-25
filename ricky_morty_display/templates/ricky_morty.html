@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ricky and Morty</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .float-layout {
+        padding: 5px 5px;
+        float: left;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    .card-container {
+        overflow: hidden;
+    }
+
+    .card {
+        background-color: aliceblue;
+        color: black;
+        float: right;
+    }
+
+    .card-title {
+        font-size: 24px;
+        text-align: center;
+        font-weight: bold;
+        padding-top: 20px;
+    }
+
+    .card-desc {
+        padding: 30px;
+        text-align: left;
+        font-size: 18px;
+    }
+
+    /*add this it*/
+    .card-image {
+        display: flex;
+    }
+
+    /*-------------*/
+
+    div.card-image img {
+        width: 50%;
+        height: auto;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-row-gap: 50px;
+        grid-template-columns: auto auto auto;
+        background-color: #EEEEEE;
+        padding: 10px;
+    }
+
+    .grid-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    /* Phone Devices Query */
+    @media only screen and (max-width: 37.5em) {
+        div.card-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        /*add this it*/
+        .card-image {
+            flex-direction: column;
+        }
+
+        /*----------------------*/
+
+        .card {
+            width: 100%;
+            margin-top: -4px;
+        }
+    }
+</style>
+
+<body>
+    <h1>Ricky and Morty</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <br><br>
+        <button type="submit" id="button" class="button" >Search</button>
+    </form>
+
+    {% load columns %}
+
+    <div class="row">
+        {% for dat in data|columns:3 %}
+        <div class="col-md-4">
+            {% for d in dat %}
+            <div class="item">
+                <div class="card-container">
+                    <div class="float-layout">
+                        <div class="card-image">
+                            <img src="{{d.image}}">
+                            <div class="card">
+                                <div class="card-title">{{d.name}}</div>
+                                <div class="card-desc">
+                                    Gender: {{d.gender}} <br>
+                                    Species: {{d.species}} <br>
+                                    Type: {{d.status}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+    
+
+
+</body>
+
+</html>
