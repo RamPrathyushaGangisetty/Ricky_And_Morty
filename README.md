@@ -22,3 +22,8 @@
 
 Access the web app at http://127.0.0.1:8000/
    
+## Screenshots of the Web App
+
+![Screenshot image-1](images/image1.PNG)
+
+![Screenshot image-2](images/image2.PNG)
